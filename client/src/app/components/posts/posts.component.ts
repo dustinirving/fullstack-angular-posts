@@ -16,4 +16,17 @@ export class PostsComponent implements OnInit {
       this.posts = posts;
     });
   }
+
+  createPost(post: Post) {
+    this.postService.createPost(post).subscribe((post) => {
+      this.posts.push(post);
+    });
+  }
+
+  deletePost(post: Post) {
+    this.posts = this.posts.filter((p) => {
+      return p._id !== post._id;
+    });
+    this.postService.deletePost(post).subscribe();
+  }
 }

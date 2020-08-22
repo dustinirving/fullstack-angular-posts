@@ -20,4 +20,12 @@ export class PostService {
   getPosts(): Observable<Post[]> {
     return this.http.get<Post[]>(this.postsUrl);
   }
+
+  createPost(post: Post): Observable<Post> {
+    return this.http.post<Post>(this.postsUrl, post, httpOptions);
+  }
+
+  deletePost(post: Post): Observable<Post> {
+    return this.http.delete<Post>(`${this.postsUrl}/${post._id}`);
+  }
 }

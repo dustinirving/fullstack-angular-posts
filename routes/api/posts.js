@@ -11,6 +11,15 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.delete("/:id", async (req, res) => {
+  try {
+    const deletedPost = await Post.findByIdAndDelete(req.params.id);
+    return res.json(deletedPost);
+  } catch (err) {
+    res.json(err);
+  }
+});
+
 router.get("/", async (req, res) => {
   try {
     const posts = await Post.find();
